@@ -1,0 +1,54 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$nSENH591vl1k$CFdiGEF/4tQZtzZjSB3MPNMXDhAzmxD+rEHpQ0RJue4=",
+      "last_login": "2021-09-14T16:34:01.944Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "admin@mai.ru",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2021-09-14T16:33:52.620Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$216000$sQKqPxQ9QZ0I$rYQsBXQtqH1W0oAHfJmYKbbmpkgFMNyOksmFiKRgI3M=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "dummy",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2021-09-14T16:40:47.782Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "core.account",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "money": 1000
+    }
+  },
+  {
+    "model": "core.account",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "money": 1000
+    }
+  }
+]
