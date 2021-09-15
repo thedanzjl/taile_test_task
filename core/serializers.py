@@ -1,8 +1,6 @@
 from math import floor
 from django.db import transaction
-from django.db.models import ObjectDoesNotExist
 from rest_framework import serializers
-from rest_framework.response import Response
 
 from core.models import Account, Transaction
 
@@ -18,13 +16,13 @@ class AccountSerializer(serializers.ModelSerializer):
 
 
 class TransactionSerializer(serializers.ModelSerializer):
-    from_account = AccountSerializer(read_only=True, many=False)
+    from_account = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
     created_at = serializers.DateTimeField(read_only=True)
     from_accounts = serializers.PrimaryKeyRelatedField(many=True, write_only=True,
                                                        queryset=Account.objects.all())
     to_account = serializers.PrimaryKeyRelatedField(many=False,
                                                     queryset=Account.objects.all())
-    amount = serializers.DecimalField(max_digits=8, decimal_places=2, source='money')
+    amount = serializers.DecimalField(max_digits=8, decimal_places=2)
 
     def __init__(self, *args, **kwargs):
         many = kwargs.pop('many', True)
@@ -68,7 +66,7 @@ class TransactionSerializer(serializers.ModelSerializer):
         recipient.save()
 
         transactions = Transaction.objects.bulk_create([
-            Transaction(from_account=sender, to_account=recipient, money=transfer_amount_each)
+            Transaction(from_account=sender, to_account=recipient, amount=transfer_amount_each)
             for sender in senders
         ])
 
